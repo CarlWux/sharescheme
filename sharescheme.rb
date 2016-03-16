@@ -2,7 +2,7 @@
 require 'optparse'
 require 'fileutils'
 def sharedScheme(projectpath)
-  # puts projectpath
+  puts projectpath
   sharefilepath={}
   sharefilepath[:xcodeproj]=nil
   Dir::glob("#{projectpath}/*.xcodeproj") do |variable|
@@ -15,8 +15,8 @@ def sharedScheme(projectpath)
     return;
   end
 
-
   puts "没有共享，先在xcuserdatad 下找到工程名.xcscheme 的文件"
+  FileUtils.mkdir_p "#{Dir.getwd}/xcshareddata/xcschemes"
   # puts "xcuserdata 目录为 #{Dir.getwd}"
   sharedresult=false
   Dir.glob("./*/*.xcuserdatad/xcschemes/*.xcscheme") do |variable|
@@ -27,8 +27,9 @@ def sharedScheme(projectpath)
 
   if sharedresult==true
     puts "设置共享成功"
+  else
+    puts "设置共享失败"
   end
-
 end
 
 options={}
