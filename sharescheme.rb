@@ -5,7 +5,7 @@ def sharedScheme(projectpath)
   puts projectpath
   sharefilepath={}
   sharefilepath[:xcodeproj]=nil
-  xcodeprojfiles = File.join("**", "*.xcodeproj")
+  xcodeprojfiles = File.join("*", "*.xcodeproj")
 
   Dir::glob(xcodeprojfiles) do |variable|
       Dir.chdir("#{variable}")
