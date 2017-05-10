@@ -5,9 +5,14 @@ def sharedScheme(projectpath)
   puts projectpath
   sharefilepath={}
   sharefilepath[:xcodeproj]=nil
-  Dir::glob("#{projectpath}/*.xcodeproj") do |variable|
-    Dir.chdir("#{variable}")
+  xcodeprojfiles = File.join("**", "*.xcodeproj")
+
+  Dir::glob(xcodeprojfiles) do |variable|
+      Dir.chdir("#{variable}")
   end
+  # Dir::glob("#{projectpath}/*.xcodeproj") do |variable|
+  #   Dir.chdir("#{variable}")
+  # end
   puts Dir.getwd
   #先看看是不是已经共享了
   Dir.glob("./xcshareddata/xcschemes/*.xcscheme") do |variable|
